@@ -1,0 +1,48 @@
+namespace: todo-app
+
+frontend:
+  image:
+    repository: ghcr.io/YOUR_USER/todo-frontend
+    tag: "latest"           # ← CI/CD will replace this with Git SHA
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+backend:
+  image:
+    repository: ghcr.io/YOUR_USER/todo-backend
+    tag: "latest"           # ← CI/CD will replace this
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+  env:
+    DB_HOST: postgres-service
+    DB_PORT: "5432"
+    DB_NAME: tododb
+    DB_USER: todouser
+    PORT: "3001"
+
+postgres:
+  image: postgres:15-alpine
+  storage: 2Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+ingress:
+  host: todo.yourdomain.com    # ← change to your domain
+  tlsSecret: todo-tls
