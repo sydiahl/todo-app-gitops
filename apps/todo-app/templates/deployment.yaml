@@ -14,9 +14,6 @@ spec:
       labels:
         app: postgres
     spec:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
       containers:
       - name: postgres
         image: {{ .Values.postgres.image }}
