@@ -2,8 +2,8 @@ namespace: todo-app
 
 frontend:
   image:
-    repository: ghcr.io/YOUR_USER/todo-frontend
-    tag: "latest"           # ← CI/CD will replace this with Git SHA
+    repository: ghcr.io/sydiahl/todo-frontend
+    tag: "latest" # frontend-tag
   replicaCount: 1
   resources:
     requests:
@@ -15,8 +15,8 @@ frontend:
 
 backend:
   image:
-    repository: ghcr.io/YOUR_USER/todo-backend
-    tag: "latest"           # ← CI/CD will replace this
+    repository: ghcr.io/sydiahl/todo-backend
+    tag: "latest" # backend-tag
   replicaCount: 1
   resources:
     requests:
@@ -44,5 +44,5 @@ postgres:
       memory: 512Mi
 
 ingress:
-  host: todo.yourdomain.com    # ← change to your domain
+  host: sydiahl-todo.duckdns.org
   tlsSecret: todo-tls
