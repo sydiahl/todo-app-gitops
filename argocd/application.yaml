@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USER/todo-app-gitops
+    repoURL: https://github.com/sydiahl/todo-app-gitops
     targetRevision: HEAD
     path: apps/todo-app
     helm:
@@ -20,6 +20,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true       # ← Self-heal enabled
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
