@@ -3,7 +3,7 @@ namespace: todo-app
 frontend:
   image:
     repository: ghcr.io/sydiahl/todo-frontend
-    tag: "latest" # frontend-tag
+    tag: "b880eca6" # frontend-tag
   replicaCount: 1
   resources:
     requests:
@@ -16,7 +16,7 @@ frontend:
 backend:
   image:
     repository: ghcr.io/sydiahl/todo-backend
-    tag: "latest" # backend-tag
+    tag: "b880eca6" # backend-tag
   replicaCount: 1
   resources:
     requests:
