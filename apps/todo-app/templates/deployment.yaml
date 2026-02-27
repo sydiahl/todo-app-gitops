@@ -14,9 +14,22 @@ spec:
       labels:
         app: postgres
     spec:
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 999:999 /var/lib/postgresql/data"]
+        volumeMounts:
+        - name: pgdata
+          mountPath: /var/lib/postgresql/data
+        securityContext:
+          runAsUser: 0
       containers:
       - name: postgres
         image: {{ .Values.postgres.image }}
+        securityContext:
+          runAsUser: 999
+          runAsGroup: 999
+          allowPrivilegeEscalation: false
         env:
         - name: POSTGRES_DB
           value: {{ .Values.backend.env.DB_NAME }}
@@ -27,6 +40,8 @@ spec:
             secretKeyRef:
               name: postgres-secret
               key: DB_PASSWORD
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
         ports:
         - containerPort: 5432
         volumeMounts:
